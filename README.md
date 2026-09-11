@@ -363,3 +363,33 @@ Index 3 → [10, 3, 17, 24]
 Index 4 → Empty
 Index 5 → Empty
 Index 6 → Empty
+
+### 9. Hashing — Linear Probing
+
+Hash table size = 7
+
+Hash function:
+
+`key % 7`
+
+Keys: `10, 3, 17, 24, 9`
+
+| Key | Calculation | Final Index |
+|-----|-------------|-------------|
+| 10 | 10 % 7 = 3 | 3 |
+| 3 | 3 % 7 = 3 → 4 | 4 |
+| 17 | 17 % 7 = 3 → 4 → 5 | 5 |
+| 24 | 24 % 7 = 3 → 4 → 5 → 6 | 6 |
+| 9 | 9 % 7 = 2 | 2 |
+
+### Final Hash Table
+
+Index 0 → Empty  
+Index 1 → Empty  
+Index 2 → 9  
+Index 3 → 10  
+Index 4 → 3  
+Index 5 → 17  
+Index 6 → 24  
+
+**Collisions:** 3, 17, and 24 initially hash to index 3, so linear probing moves them to the next available positions.
