@@ -173,3 +173,193 @@ In hashing, when two different keys map to the same index, this is called a **co
 
 ### 10. Collision Handling
 Separate chaining resolves collisions by storing multiple values at the same index using a **linked list**, while linear probing resolves them by **searching for the next available slot**.
+
+
+## Section B: Trace the Logic
+
+### 1. Bubble Sort
+
+Initial array:
+
+`[5, 2, 8, 1, 9]`
+
+One full pass from left to right:
+
+- Compare 5 and 2 → swap  
+  `[2, 5, 8, 1, 9]`
+
+- Compare 5 and 8 → no swap
+
+- Compare 8 and 1 → swap  
+  `[2, 5, 1, 8, 9]`
+
+- Compare 8 and 9 → no swap
+
+**Array after one full pass:**
+
+`[2, 5, 1, 8, 9]`
+
+---
+
+### 2. Selection Sort
+
+Initial array:
+
+`[5, 2, 8, 1, 9]`
+
+**Step 1:** Find the smallest element (1) and swap it with 5.
+
+`[1, 2, 8, 5, 9]`
+
+**Step 2:** Find the smallest element in the remaining unsorted part (2).
+
+`[1, 2, 8, 5, 9]`
+
+**Step 3:** Find the smallest element in the remaining unsorted part (5) and swap it with 8.
+
+`[1, 2, 5, 8, 9]`
+
+**Step 4:** Find the smallest element in the remaining unsorted part (8).
+
+`[1, 2, 5, 8, 9]`
+
+**Final array:**
+
+`[1, 2, 5, 8, 9]`
+
+---
+
+### 3. Insertion Sort
+
+Initial array:
+
+`[5, 2, 8, 1, 9]`
+
+**Insert 2:**
+
+`[2, 5, 8, 1, 9]`
+
+**Insert 8:**
+
+`[2, 5, 8, 1, 9]`
+
+**Insert 1:**
+
+`[1, 2, 5, 8, 9]`
+
+**Insert 9:**
+
+`[1, 2, 5, 8, 9]`
+
+**Final array:**
+
+`[1, 2, 5, 8, 9]`
+
+---
+
+### 4. Merge Sort — Splitting Step Only
+
+Initial array:
+
+`[8, 3, 5, 4, 7, 6, 1, 2]`
+
+**First split:**
+
+`[8, 3, 5, 4]` and `[7, 6, 1, 2]`
+
+**Second split:**
+
+`[8, 3]`, `[5, 4]`, `[7, 6]`, `[1, 2]`
+
+**Final split:**
+
+`[8]`, `[3]`, `[5]`, `[4]`, `[7]`, `[6]`, `[1]`, `[2]`
+
+---
+
+### 5. Quick Sort — First Partition
+
+Initial array:
+
+`[8, 3, 5, 4, 7, 6, 1, 2]`
+
+Pivot = **2 (last element)**
+
+Using the **Lomuto partition** method:
+
+`[1, 2, 5, 4, 7, 6, 8, 3]`
+
+The pivot `2` is now at:
+
+**Final index = 1**
+
+> Note: The arrangement of elements other than the pivot can vary depending on the partition implementation.
+
+---
+
+### 6. Radix Sort
+
+Initial array:
+
+`[170, 45, 75, 90, 802, 24, 2, 66]`
+
+**After sorting by the ones digit:**
+
+`[170, 90, 802, 2, 24, 45, 75, 66]`
+
+**After sorting by the tens digit:**
+
+`[802, 2, 24, 45, 66, 170, 75, 90]`
+
+---
+
+### 7. Binary Search
+
+Sorted array:
+
+`[2, 5, 8, 12, 16, 23, 38, 45, 56, 72, 91]`
+
+Target = `23`
+
+| Step | Low | High | Mid | Value at Mid |
+|------|-----|------|-----|--------------|
+| 1 | 0 | 10 | 5 | 23 |
+
+Since `array[5] = 23`, the target is found.
+
+**Result: 23 is found at index 5.**
+
+---
+
+### 8. Hashing — Separate Chaining
+
+Hash table size = `7`
+
+Hash function:
+
+`key % 7`
+
+Keys:
+
+`10, 3, 17, 24, 9`
+
+| Key | Calculation | Initial Index |
+|-----|-------------|---------------|
+| 10 | 10 % 7 | 3 |
+| 3 | 3 % 7 | 3 |
+| 17 | 17 % 7 | 3 |
+| 24 | 24 % 7 | 3 |
+| 9 | 9 % 7 | 2 |
+
+There are collisions at **index 3**.
+
+Using separate chaining:
+
+```text
+Index 0 → Empty
+Index 1 → Empty
+Index 2 → [9]
+Index 3 → [10, 3, 17, 24]
+Index 4 → Empty
+Index 5 → Empty
+Index 6 → Empty
